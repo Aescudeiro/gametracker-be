@@ -1,23 +1,28 @@
 import { AppModule } from "@/infra/app.module";
+import { DatabaseModule } from "@/infra/database/database.module";
 import { PrismaService } from "@/infra/database/prisma/prisma.service";
 import { INestApplication } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { Test } from "@nestjs/testing";
-import { hash } from "bcryptjs";
 import request from "supertest";
+import { CountryFactory } from "test/factories/make-country";
+import { UserFactory } from "test/factories/make-user";
 
 describe("Create country (E2E)", () => {
   let app: INestApplication;
+  let userFactory: UserFactory;
   let prisma: PrismaService;
   let jwt: JwtService;
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [AppModule, DatabaseModule],
+      providers: [UserFactory, CountryFactory],
     }).compile();
 
     app = moduleRef.createNestApplication();
 
+    userFactory = moduleRef.get<UserFactory>(UserFactory);
     prisma = moduleRef.get<PrismaService>(PrismaService);
     jwt = moduleRef.get<JwtService>(JwtService);
 
@@ -25,15 +30,9 @@ describe("Create country (E2E)", () => {
   });
 
   test("[POST] /countries", async () => {
-    const user = await prisma.user.create({
-      data: {
-        name: "John Doe",
-        email: "johndoe@example.com",
-        password: await hash("123456", 8),
-      },
-    });
+    const user = await userFactory.makePrismaUser();
 
-    const accessToken = jwt.sign({ sub: user.id });
+    const accessToken = jwt.sign({ sub: user.id.toString() });
 
     const response = await request(app.getHttpServer())
       .post("/countries")
