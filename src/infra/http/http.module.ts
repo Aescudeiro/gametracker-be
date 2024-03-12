@@ -1,19 +1,21 @@
-import { Module } from "@nestjs/common";
+import { Module } from '@nestjs/common'
 
-import { CreateAccountController } from "./controllers/create-account.controller";
-import { AuthenticateController } from "./controllers/authenticate.controller";
-import { CreateCountryController } from "./controllers/create-country.controller";
-import { FetchCountriesController } from "./controllers/fetch-countries.controller";
-import { DatabaseModule } from "../database/database.module";
-import { CreateCountryUseCase } from "@/domain/livescore/application/use-cases/create-country";
-import { FetchCountriesUseCase } from "@/domain/livescore/application/use-cases/fetch-countries";
-import { RegisterUserUseCase } from "@/domain/livescore/application/use-cases/register-user";
-import { AuthenticateUserUseCase } from "@/domain/livescore/application/use-cases/authenticate-user";
-import { CryptographyModule } from "../cryptography/cryptography.module";
-import { GetCountryBySlugController } from "./controllers/get-country-by-slug.controller";
-import { GetCountryBySlugUseCase } from "@/domain/livescore/application/use-cases/get-country-by-slug";
-import { EditCountryController } from "./controllers/edit-country.controller";
-import { EditCountryUseCase } from "@/domain/livescore/application/use-cases/edit-country";
+import { CreateAccountController } from './controllers/create-account.controller'
+import { AuthenticateController } from './controllers/authenticate.controller'
+import { CreateCountryController } from './controllers/create-country.controller'
+import { FetchCountriesController } from './controllers/fetch-countries.controller'
+import { DatabaseModule } from '../database/database.module'
+import { CreateCountryUseCase } from '@/domain/livescore/application/use-cases/create-country'
+import { FetchCountriesUseCase } from '@/domain/livescore/application/use-cases/fetch-countries'
+import { RegisterUserUseCase } from '@/domain/livescore/application/use-cases/register-user'
+import { AuthenticateUserUseCase } from '@/domain/livescore/application/use-cases/authenticate-user'
+import { CryptographyModule } from '../cryptography/cryptography.module'
+import { GetCountryBySlugController } from './controllers/get-country-by-slug.controller'
+import { GetCountryBySlugUseCase } from '@/domain/livescore/application/use-cases/get-country-by-slug'
+import { EditCountryController } from './controllers/edit-country.controller'
+import { EditCountryUseCase } from '@/domain/livescore/application/use-cases/edit-country'
+import { DeleteCountryController } from './controllers/delete-country.controller'
+import { DeleteCountryUseCase } from '@/domain/livescore/application/use-cases/delete-country'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -24,6 +26,7 @@ import { EditCountryUseCase } from "@/domain/livescore/application/use-cases/edi
     FetchCountriesController,
     GetCountryBySlugController,
     EditCountryController,
+    DeleteCountryController,
   ],
   providers: [
     CreateCountryUseCase,
@@ -32,6 +35,7 @@ import { EditCountryUseCase } from "@/domain/livescore/application/use-cases/edi
     AuthenticateUserUseCase,
     GetCountryBySlugUseCase,
     EditCountryUseCase,
+    DeleteCountryUseCase,
   ],
 })
 export class HttpModule {}

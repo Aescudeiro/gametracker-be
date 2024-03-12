@@ -1,7 +1,7 @@
-import { UniqueEntityID } from "@/core/entities/unique-entity-id";
-import { Country } from "@/domain/livescore/enterprise/entities/country";
-import { Slug } from "@/domain/livescore/enterprise/entities/value-objects/slug";
-import { Prisma, Country as PrismaCountry } from "@prisma/client";
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { Country } from '@/domain/livescore/enterprise/entities/country'
+import { Slug } from '@/domain/livescore/enterprise/entities/value-objects/slug'
+import { Prisma, Country as PrismaCountry } from '@prisma/client'
 
 export class PrismaCountryMapper {
   static toDomain(raw: PrismaCountry): Country {
@@ -12,7 +12,7 @@ export class PrismaCountryMapper {
         slug: Slug.create(raw.slug),
       },
       new UniqueEntityID(raw.id),
-    );
+    )
   }
 
   static toPrisma(country: Country): Prisma.CountryUncheckedCreateInput {
@@ -21,6 +21,6 @@ export class PrismaCountryMapper {
       name: country.name,
       alpha: country.alpha,
       slug: country.slug.value,
-    };
+    }
   }
 }

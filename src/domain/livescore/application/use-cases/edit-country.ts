@@ -1,19 +1,19 @@
-import { Either, left, right } from "@/core/either";
-import { CountriesRepository } from "../repositories/countries-repository";
-import { Country } from "@/domain/livescore/enterprise/entities/country";
-import { ResourceNotFoundError } from "@/core/errors/errors/resource-not-found-error";
-import { Injectable } from "@nestjs/common";
+import { Either, left, right } from '@/core/either'
+import { CountriesRepository } from '../repositories/countries-repository'
+import { Country } from '@/domain/livescore/enterprise/entities/country'
+import { ResourceNotFoundError } from '@/core/errors/errors/resource-not-found-error'
+import { Injectable } from '@nestjs/common'
 
 interface EditCountryUseCaseRequest {
-  countryId: string;
-  name?: string;
-  alpha?: string;
+  countryId: string
+  name?: string
+  alpha?: string
 }
 
 type EditCountryUseCaseResponse = Either<
   ResourceNotFoundError,
   { country: Country }
->;
+>
 
 @Injectable()
 export class EditCountryUseCase {
@@ -24,22 +24,22 @@ export class EditCountryUseCase {
     alpha,
     name,
   }: EditCountryUseCaseRequest): Promise<EditCountryUseCaseResponse> {
-    const country = await this.countryRepository.findById(countryId);
+    const country = await this.countryRepository.findById(countryId)
 
     if (!country) {
-      return left(new ResourceNotFoundError());
+      return left(new ResourceNotFoundError())
     }
 
     if (name) {
-      country.name = name;
+      country.name = name
     }
 
     if (alpha) {
-      country.alpha = alpha;
+      country.alpha = alpha
     }
 
-    await this.countryRepository.save(country);
+    await this.countryRepository.save(country)
 
-    return right({ country });
+    return right({ country })
   }
 }

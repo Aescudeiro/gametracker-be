@@ -1,6 +1,6 @@
-import { UniqueEntityID } from "@/core/entities/unique-entity-id";
-import { User } from "@/domain/livescore/enterprise/entities/user";
-import { Prisma, User as PrismaUser } from "@prisma/client";
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { User } from '@/domain/livescore/enterprise/entities/user'
+import { Prisma, User as PrismaUser } from '@prisma/client'
 
 export class PrismaUserMapper {
   static toDomain(raw: PrismaUser): User {
@@ -11,7 +11,7 @@ export class PrismaUserMapper {
         password: raw.password,
       },
       new UniqueEntityID(raw.id),
-    );
+    )
   }
 
   static toPrisma(user: User): Prisma.UserUncheckedCreateInput {
@@ -20,6 +20,6 @@ export class PrismaUserMapper {
       name: user.name,
       email: user.email,
       password: user.password,
-    };
+    }
   }
 }

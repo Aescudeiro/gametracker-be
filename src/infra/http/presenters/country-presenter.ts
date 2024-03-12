@@ -1,4 +1,4 @@
-import { Country } from "@/domain/livescore/enterprise/entities/country";
+import { Country } from '@/domain/livescore/enterprise/entities/country'
 
 export class CountryPresenter {
   static toHTTP(country: Country) {
@@ -7,6 +7,6 @@ export class CountryPresenter {
       name: country.name,
       alpha: country.alpha,
       slug: country.slug.value,
-    };
+    }
   }
 }

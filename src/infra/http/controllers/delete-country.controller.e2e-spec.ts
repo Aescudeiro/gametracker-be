@@ -8,9 +8,10 @@ import request from 'supertest'
 import { CountryFactory } from 'test/factories/make-country'
 import { UserFactory } from 'test/factories/make-user'
 
-describe('Create country (E2E)', () => {
+describe('Delete country (E2E)', () => {
   let app: INestApplication
   let userFactory: UserFactory
+  let countryFactory: CountryFactory
   let prisma: PrismaService
   let jwt: JwtService
 
@@ -23,34 +24,34 @@ describe('Create country (E2E)', () => {
     app = moduleRef.createNestApplication()
 
     userFactory = moduleRef.get<UserFactory>(UserFactory)
+    countryFactory = moduleRef.get<CountryFactory>(CountryFactory)
     prisma = moduleRef.get<PrismaService>(PrismaService)
     jwt = moduleRef.get<JwtService>(JwtService)
 
     await app.init()
   })
 
-  test('[POST] /countries', async () => {
+  test('[delete] /countries/:id', async () => {
     const user = await userFactory.makePrismaUser()
 
     const accessToken = jwt.sign({ sub: user.id.toString() })
 
+    const country = await countryFactory.makePrismaCountry()
+    const countryId = country.id.toString()
+
     const response = await request(app.getHttpServer())
-      .post('/countries')
+      .delete(`/countries/${countryId}`)
       .set('Authorization', `Bearer ${accessToken}`)
-      .send({
-        name: 'Portugal',
-        alpha: 'PT',
-      })
+      .send()
 
-    expect(response.status).toBe(201)
+    expect(response.status).toBe(204)
 
-    const countryOnDatabase = await prisma.country.findFirst({
+    const countryOnDatabase = await prisma.country.findUnique({
       where: {
-        alpha: 'PT',
-        name: 'Portugal',
+        id: countryId,
       },
     })
 
-    expect(countryOnDatabase).toBeTruthy()
+    expect(countryOnDatabase).toBeNull()
   })
 })
