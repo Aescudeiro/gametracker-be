@@ -8,8 +8,8 @@ import {
 } from '@nestjs/common'
 import { z } from 'zod'
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
-import { CreateCountryUseCase } from '@/domain/livescore/application/use-cases/create-country'
-import { CountryAlreadyExistsError } from '@/domain/livescore/application/use-cases/errors/country-already-exists-error'
+import { CreateCountryUseCase } from '@/domain/livescore/application/use-cases/auth/create-country'
+import { CountryAlreadyExistsError } from '@/domain/livescore/application/use-cases/country/errors/country-already-exists-error'
 
 const createCountryBodySchema = z.object({
   name: z.string(),

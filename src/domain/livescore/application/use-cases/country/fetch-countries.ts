@@ -1,7 +1,7 @@
 import { Country } from '@/domain/livescore/enterprise/entities/country'
-import { CountriesRepository } from '../repositories/countries-repository'
 import { Either, right } from '@/core/either'
 import { Injectable } from '@nestjs/common'
+import { CountriesRepository } from '@/domain/livescore/application/repositories/countries-repository'
 
 interface FetchCountriesUseCaseRequest {
   page: number

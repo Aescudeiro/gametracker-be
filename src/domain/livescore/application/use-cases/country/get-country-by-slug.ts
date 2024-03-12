@@ -1,8 +1,8 @@
 import { Country } from '@/domain/livescore/enterprise/entities/country'
-import { CountriesRepository } from '../repositories/countries-repository'
 import { Either, left, right } from '@/core/either'
 import { ResourceNotFoundError } from '@/core/errors/errors/resource-not-found-error'
 import { Injectable } from '@nestjs/common'
+import { CountriesRepository } from '@/domain/livescore/application/repositories/countries-repository'
 
 interface GetCountryBySlugUseCaseRequest {
   slug: string

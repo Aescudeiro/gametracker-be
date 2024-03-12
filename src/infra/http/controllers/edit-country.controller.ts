@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common'
 import { z } from 'zod'
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
-import { EditCountryUseCase } from '@/domain/livescore/application/use-cases/edit-country'
+import { EditCountryUseCase } from '@/domain/livescore/application/use-cases/country/edit-country'
 
 const editCountryBodySchema = z.object({
   name: z.string(),

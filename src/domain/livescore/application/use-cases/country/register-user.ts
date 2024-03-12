@@ -1,9 +1,9 @@
 import { Either, left, right } from '@/core/either'
 import { Injectable } from '@nestjs/common'
-import { UsersRepository } from '../repositories/users-repository'
-import { User } from '../../enterprise/entities/user'
-import { UserAlreadyExistsError } from './errors/user-already-exists-error'
-import { HashGenerator } from '../cryptography/hash-generator'
+import { UserAlreadyExistsError } from '../auth/errors/user-already-exists-error'
+import { User } from '@/domain/livescore/enterprise/entities/user'
+import { UsersRepository } from '@/domain/livescore/application/repositories/users-repository'
+import { HashGenerator } from '@/domain/livescore/application/cryptography/hash-generator'
 
 interface RegisterUserUseCaseRequest {
   name: string

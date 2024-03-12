@@ -8,9 +8,9 @@ import {
 } from '@nestjs/common'
 import { z } from 'zod'
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
-import { RegisterUserUseCase } from '@/domain/livescore/application/use-cases/register-user'
-import { UserAlreadyExistsError } from '@/domain/livescore/application/use-cases/errors/user-already-exists-error'
 import { Public } from '@/infra/auth/public'
+import { RegisterUserUseCase } from '@/domain/livescore/application/use-cases/country/register-user'
+import { UserAlreadyExistsError } from '@/domain/livescore/application/use-cases/auth/errors/user-already-exists-error'
 
 const createAccountBodySchema = z.object({
   name: z.string(),

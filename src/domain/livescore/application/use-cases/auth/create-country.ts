@@ -1,9 +1,9 @@
 import { Country } from '@/domain/livescore/enterprise/entities/country'
-import { CountriesRepository } from '../repositories/countries-repository'
 import { Either, left, right } from '@/core/either'
 import { Injectable } from '@nestjs/common'
-import { CountryAlreadyExistsError } from './errors/country-already-exists-error'
-import { Slug } from '../../enterprise/entities/value-objects/slug'
+import { CountryAlreadyExistsError } from '@/domain/livescore/application/use-cases/country/errors/country-already-exists-error'
+import { CountriesRepository } from '@/domain/livescore/application/repositories/countries-repository'
+import { Slug } from '@/domain/livescore/enterprise/entities/value-objects/slug'
 
 interface CreateCountryUseCaseRequest {
   name: string

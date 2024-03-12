@@ -8,9 +8,9 @@ import {
 } from '@nestjs/common'
 import { z } from 'zod'
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
-import { AuthenticateUserUseCase } from '@/domain/livescore/application/use-cases/authenticate-user'
-import { WrongCredentialsError } from '@/domain/livescore/application/use-cases/errors/wrong-credentials-error'
 import { Public } from '@/infra/auth/public'
+import { AuthenticateUserUseCase } from '@/domain/livescore/application/use-cases/auth/authenticate-user'
+import { WrongCredentialsError } from '@/domain/livescore/application/use-cases/auth/errors/wrong-credentials-error'
 
 const authenticateBodySchema = z.object({
   email: z.string().email(),

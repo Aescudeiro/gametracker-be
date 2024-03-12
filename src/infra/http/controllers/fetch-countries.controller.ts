@@ -1,8 +1,8 @@
 import { BadRequestException, Controller, Get, Query } from '@nestjs/common'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
 import { z } from 'zod'
-import { FetchCountriesUseCase } from '@/domain/livescore/application/use-cases/fetch-countries'
 import { CountryPresenter } from '../presenters/country-presenter'
+import { FetchCountriesUseCase } from '@/domain/livescore/application/use-cases/country/fetch-countries'
 
 const pageQueryParamSchema = z
   .string()

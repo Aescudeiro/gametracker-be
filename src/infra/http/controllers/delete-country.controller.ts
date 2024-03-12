@@ -1,4 +1,4 @@
-import { DeleteCountryUseCase } from '@/domain/livescore/application/use-cases/delete-country'
+import { DeleteCountryUseCase } from '@/domain/livescore/application/use-cases/country/delete-country'
 import {
   BadRequestException,
   Controller,

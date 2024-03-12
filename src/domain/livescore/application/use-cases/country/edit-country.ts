@@ -1,8 +1,8 @@
 import { Either, left, right } from '@/core/either'
-import { CountriesRepository } from '../repositories/countries-repository'
 import { Country } from '@/domain/livescore/enterprise/entities/country'
 import { ResourceNotFoundError } from '@/core/errors/errors/resource-not-found-error'
 import { Injectable } from '@nestjs/common'
+import { CountriesRepository } from '@/domain/livescore/application/repositories/countries-repository'
 
 interface EditCountryUseCaseRequest {
   countryId: string
