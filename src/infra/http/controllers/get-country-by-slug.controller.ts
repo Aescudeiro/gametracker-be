@@ -12,8 +12,6 @@ export class GetCountryBySlugController {
       slug,
     });
 
-    console.log(result);
-
     if (result.isLeft()) {
       throw new BadRequestException();
     }
