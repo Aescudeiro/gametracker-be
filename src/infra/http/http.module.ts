@@ -10,6 +10,8 @@ import { FetchCountriesUseCase } from "@/domain/livescore/application/use-cases/
 import { RegisterUserUseCase } from "@/domain/livescore/application/use-cases/register-user";
 import { AuthenticateUserUseCase } from "@/domain/livescore/application/use-cases/authenticate-user";
 import { CryptographyModule } from "../cryptography/cryptography.module";
+import { GetCountryBySlugController } from "./controllers/get-country-by-slug.controller";
+import { GetCountryBySlugUseCase } from "@/domain/livescore/application/use-cases/get-country-by-slug";
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -18,12 +20,14 @@ import { CryptographyModule } from "../cryptography/cryptography.module";
     AuthenticateController,
     CreateCountryController,
     FetchCountriesController,
+    GetCountryBySlugController,
   ],
   providers: [
     CreateCountryUseCase,
     FetchCountriesUseCase,
     RegisterUserUseCase,
     AuthenticateUserUseCase,
+    GetCountryBySlugUseCase,
   ],
 })
 export class HttpModule {}

@@ -6,7 +6,7 @@ import { Test } from "@nestjs/testing";
 import { hash } from "bcryptjs";
 import request from "supertest";
 
-describe("Fetch countries (E2E)", () => {
+describe("Get country by slug (E2E)", () => {
   let app: INestApplication;
   let prisma: PrismaService;
   let jwt: JwtService;
@@ -24,7 +24,7 @@ describe("Fetch countries (E2E)", () => {
     await app.init();
   });
 
-  test("[GET] /countries", async () => {
+  test("[GET] /countries/:slug", async () => {
     const user = await prisma.user.create({
       data: {
         name: "John Doe",
@@ -35,35 +35,23 @@ describe("Fetch countries (E2E)", () => {
 
     const accessToken = jwt.sign({ sub: user.id.toString() });
 
-    await prisma.country.createMany({
-      data: [
-        {
-          name: "Portugal",
-          alpha: "PT",
-          slug: "portugal",
-        },
-        {
-          name: "Spain",
-          alpha: "ES",
-          slug: "spain",
-        },
-      ],
+    await prisma.country.create({
+      data: {
+        name: "Portugal",
+        alpha: "PT",
+        slug: "portugal",
+      },
     });
 
     const response = await request(app.getHttpServer())
-      .get("/countries")
+      .get("/countries/portugal")
       .set("Authorization", `Bearer ${accessToken}`);
 
     expect(response.status).toBe(200);
     expect(response.body).toEqual({
-      countries: [
-        expect.objectContaining({
-          name: "Portugal",
-        }),
-        expect.objectContaining({
-          name: "Spain",
-        }),
-      ],
+      country: expect.objectContaining({
+        name: "Portugal",
+      }),
     });
   });
 });
