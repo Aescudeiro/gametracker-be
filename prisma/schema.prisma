@@ -29,11 +29,22 @@ model User {
 }
 
 model Country {
-    id        String @id @default(uuid())
-    name      String @unique
-    alpha     String @unique
-    hashImage String @map("hash_image")
-    slug      String @unique
+    id    String @id @default(uuid())
+    name  String @unique
+    alpha String @unique
+    slug  String @unique
+
+    leagues League[]
 
     @@map("countries")
+}
+
+model League {
+    id        String  @id @default(uuid())
+    name      String  @unique
+    slug      String  @unique
+    countryId String
+    country   Country @relation(fields: [countryId], references: [id])
+
+    @@map("leagues")
 }

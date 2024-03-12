@@ -41,7 +41,6 @@ describe("Create country (E2E)", () => {
       .send({
         name: "Portugal",
         alpha: "PT",
-        hash_image: "hash",
       });
 
     expect(response.status).toBe(201);
@@ -50,7 +49,6 @@ describe("Create country (E2E)", () => {
       where: {
         alpha: "PT",
         name: "Portugal",
-        hashImage: "hash",
       },
     });
 

@@ -40,13 +40,11 @@ describe("Create country (E2E)", () => {
         {
           name: "Portugal",
           alpha: "PT",
-          hashImage: "hash",
           slug: "portugal",
         },
         {
           name: "Spain",
           alpha: "ES",
-          hashImage: "hash",
           slug: "spain",
         },
       ],

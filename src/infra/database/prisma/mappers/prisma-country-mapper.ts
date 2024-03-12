@@ -9,7 +9,6 @@ export class PrismaCountryMapper {
       {
         name: raw.name,
         alpha: raw.alpha,
-        hashImage: raw.hashImage,
         slug: Slug.create(raw.slug),
       },
       new UniqueEntityID(raw.id),
@@ -21,7 +20,6 @@ export class PrismaCountryMapper {
       id: country.id.toString(),
       name: country.name,
       alpha: country.alpha,
-      hashImage: country.hashImage,
       slug: country.slug.value,
     };
   }

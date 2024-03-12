@@ -8,7 +8,6 @@ import { Slug } from "../../enterprise/entities/value-objects/slug";
 interface CreateCountryUseCaseRequest {
   name: string;
   alpha: string;
-  hashImage: string;
 }
 
 type CreateCountryUseCaseResponse = Either<
@@ -23,7 +22,6 @@ export class CreateCountryUseCase {
   async execute({
     name,
     alpha,
-    hashImage,
   }: CreateCountryUseCaseRequest): Promise<CreateCountryUseCaseResponse> {
     const countryWithSameName = await this.countryRepository.findBySlug(
       Slug.createFromText(name).value,
@@ -36,7 +34,6 @@ export class CreateCountryUseCase {
     const country = Country.create({
       name,
       alpha,
-      hashImage,
     });
 
     await this.countryRepository.create(country);

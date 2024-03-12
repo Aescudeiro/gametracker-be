@@ -6,7 +6,6 @@ export class CountryPresenter {
       id: country.id.toString(),
       name: country.name,
       alpha: country.alpha,
-      hashImage: country.hashImage,
       slug: country.slug.value,
     };
   }

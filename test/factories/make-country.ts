@@ -13,7 +13,6 @@ export function makeCountry(
     {
       name: faker.location.country(),
       alpha: faker.location.countryCode(),
-      hashImage: faker.string.alphanumeric(10),
       ...override,
     },
     id,

@@ -13,7 +13,6 @@ import { CountryAlreadyExistsError } from "@/domain/livescore/application/use-ca
 const createCountryBodySchema = z.object({
   name: z.string(),
   alpha: z.string(),
-  hash_image: z.string(),
 });
 
 const bodyValidationPipe = new ZodValidationPipe(createCountryBodySchema);
@@ -26,12 +25,11 @@ export class CreateCountryController {
 
   @Post()
   async handle(@Body(bodyValidationPipe) body: CreateCountryBodySchema) {
-    const { name, alpha, hash_image: hashImage } = body;
+    const { name, alpha } = body;
 
     const result = await this.createCountry.execute({
       name,
       alpha,
-      hashImage,
     });
 
     if (result.isLeft()) {

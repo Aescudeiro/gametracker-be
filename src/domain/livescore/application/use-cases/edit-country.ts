@@ -5,7 +5,8 @@ import { ResourceNotFoundError } from "@/core/errors/errors/resource-not-found-e
 
 interface EditCountryUseCaseRequest {
   countryId: string;
-  hashImage: string;
+  name?: string;
+  alpha?: string;
 }
 
 type EditCountryUseCaseResponse = Either<
@@ -18,7 +19,8 @@ export class EditCountryUseCase {
 
   async execute({
     countryId,
-    hashImage,
+    alpha,
+    name,
   }: EditCountryUseCaseRequest): Promise<EditCountryUseCaseResponse> {
     const country = await this.countryRepository.findById(countryId);
 
@@ -26,7 +28,13 @@ export class EditCountryUseCase {
       return left(new ResourceNotFoundError());
     }
 
-    country.hashImage = hashImage;
+    if (name) {
+      country.name = name;
+    }
+
+    if (alpha) {
+      country.alpha = alpha;
+    }
 
     await this.countryRepository.save(country);
 
