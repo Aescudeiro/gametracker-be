@@ -3,6 +3,7 @@ import {
   Body,
   ConflictException,
   Controller,
+  HttpCode,
   Post,
 } from "@nestjs/common";
 import { z } from "zod";
@@ -24,6 +25,7 @@ export class CreateCountryController {
   constructor(private readonly createCountry: CreateCountryUseCase) {}
 
   @Post()
+  @HttpCode(201)
   async handle(@Body(bodyValidationPipe) body: CreateCountryBodySchema) {
     const { name, alpha } = body;
 

@@ -12,6 +12,8 @@ import { AuthenticateUserUseCase } from "@/domain/livescore/application/use-case
 import { CryptographyModule } from "../cryptography/cryptography.module";
 import { GetCountryBySlugController } from "./controllers/get-country-by-slug.controller";
 import { GetCountryBySlugUseCase } from "@/domain/livescore/application/use-cases/get-country-by-slug";
+import { EditCountryController } from "./controllers/edit-country.controller";
+import { EditCountryUseCase } from "@/domain/livescore/application/use-cases/edit-country";
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -21,6 +23,7 @@ import { GetCountryBySlugUseCase } from "@/domain/livescore/application/use-case
     CreateCountryController,
     FetchCountriesController,
     GetCountryBySlugController,
+    EditCountryController,
   ],
   providers: [
     CreateCountryUseCase,
@@ -28,6 +31,7 @@ import { GetCountryBySlugUseCase } from "@/domain/livescore/application/use-case
     RegisterUserUseCase,
     AuthenticateUserUseCase,
     GetCountryBySlugUseCase,
+    EditCountryUseCase,
   ],
 })
 export class HttpModule {}
