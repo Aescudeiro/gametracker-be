@@ -12,10 +12,12 @@ describe('Fetch countries', () => {
   })
 
   it('should be able to fetch countries', async () => {
-    await inMemoryCountriesRepository.create(makeCountry())
-    await inMemoryCountriesRepository.create(makeCountry())
-    await inMemoryCountriesRepository.create(makeCountry())
-    await inMemoryCountriesRepository.create(makeCountry())
+    await Promise.all([
+      await inMemoryCountriesRepository.create(makeCountry()),
+      await inMemoryCountriesRepository.create(makeCountry()),
+      await inMemoryCountriesRepository.create(makeCountry()),
+      await inMemoryCountriesRepository.create(makeCountry()),
+    ])
 
     const result = await sut.execute({ page: 1 })
 

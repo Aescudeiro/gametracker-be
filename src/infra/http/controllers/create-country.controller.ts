@@ -35,15 +35,13 @@ export class CreateCountryController {
     })
 
     if (result.isLeft()) {
-      if (result.isLeft()) {
-        const error = result.value
+      const error = result.value
 
-        switch (error.constructor) {
-          case CountryAlreadyExistsError:
-            throw new ConflictException(error.message)
-          default:
-            throw new BadRequestException(error.message)
-        }
+      switch (error.constructor) {
+        case CountryAlreadyExistsError:
+          throw new ConflictException(error.message)
+        default:
+          throw new BadRequestException(error.message)
       }
     }
   }

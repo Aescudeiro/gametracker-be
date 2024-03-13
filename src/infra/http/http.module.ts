@@ -16,9 +16,12 @@ import { AuthenticateUserUseCase } from '@/domain/livescore/application/use-case
 import { GetCountryBySlugUseCase } from '@/domain/livescore/application/use-cases/country/get-country-by-slug'
 import { EditCountryUseCase } from '@/domain/livescore/application/use-cases/country/edit-country'
 import { DeleteCountryUseCase } from '@/domain/livescore/application/use-cases/country/delete-country'
+import { FetchCountriesFromFDAController } from './controllers/fetch-countries-from-fda.controller'
+import { FetchCountriesFromFDAUseCase } from '@/domain/football-devs/application/use-cases/country/fetch-countries-from-fda'
+import { FDAModule } from './fda/fda.module'
 
 @Module({
-  imports: [DatabaseModule, CryptographyModule],
+  imports: [DatabaseModule, CryptographyModule, FDAModule],
   controllers: [
     CreateAccountController,
     AuthenticateController,
@@ -27,6 +30,7 @@ import { DeleteCountryUseCase } from '@/domain/livescore/application/use-cases/c
     GetCountryBySlugController,
     EditCountryController,
     DeleteCountryController,
+    FetchCountriesFromFDAController,
   ],
   providers: [
     CreateCountryUseCase,
@@ -36,6 +40,7 @@ import { DeleteCountryUseCase } from '@/domain/livescore/application/use-cases/c
     GetCountryBySlugUseCase,
     EditCountryUseCase,
     DeleteCountryUseCase,
+    FetchCountriesFromFDAUseCase,
   ],
 })
 export class HttpModule {}
