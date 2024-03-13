@@ -1,3 +1,4 @@
+import { EditCountryUseCase } from '@/domain/livescore/application/use-cases/country/edit-country'
 import {
   BadRequestException,
   Body,
@@ -8,7 +9,6 @@ import {
 } from '@nestjs/common'
 import { z } from 'zod'
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
-import { EditCountryUseCase } from '@/domain/livescore/application/use-cases/country/edit-country'
 
 const editCountryBodySchema = z.object({
   name: z.string(),
@@ -38,7 +38,7 @@ export class EditCountryController {
     })
 
     if (result.isLeft()) {
-      throw new BadRequestException()
+      throw new BadRequestException(result.value.message)
     }
   }
 }

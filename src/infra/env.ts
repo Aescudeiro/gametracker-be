@@ -7,6 +7,7 @@ export const envSchema = z.object({
   JWT_PUBLIC_KEY: z.string(),
   X_RAPIDAPI_KEY: z.string(),
   X_RAPIDAPI_HOST: z.string(),
+  FDA_API_URL: z.string(),
 })
 
 export type Env = z.infer<typeof envSchema>

@@ -2,19 +2,18 @@ import { FDAEntity } from './fda-entity'
 import { FDAUniqueEntityID } from './fda-unique-entity-id'
 
 export interface FDACountryProps {
-  id: number
   name?: string
   alpha: string
   hash_image: string
 }
 
 export class FDACountry extends FDAEntity<FDACountryProps> {
-  static create(props: FDACountryProps) {
+  static create(props: FDACountryProps, id?: FDAUniqueEntityID) {
     const country = new FDACountry(
       {
         ...props,
       },
-      new FDAUniqueEntityID(props.id),
+      id,
     )
 
     return country

@@ -4,8 +4,7 @@ export class FDAUniqueEntityID {
   private value: number
 
   constructor(value?: number) {
-    this.value =
-      value ?? randomInt(Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)
+    this.value = value ?? randomInt(0, 1000)
   }
 
   toString() {

@@ -19,7 +19,7 @@ export class DeleteCountryController {
     })
 
     if (result.isLeft()) {
-      throw new BadRequestException()
+      throw new BadRequestException(result.value.message)
     }
   }
 }
