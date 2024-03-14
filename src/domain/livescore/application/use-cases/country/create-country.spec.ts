@@ -1,5 +1,5 @@
-import { CreateCountryUseCase } from './create-country'
 import { InMemoryCountriesRepository } from 'test/repositories/in-memory-countries-repository'
+import { CreateCountryUseCase } from './create-country'
 
 let inMemoryCountriesRepository: InMemoryCountriesRepository
 let sut: CreateCountryUseCase

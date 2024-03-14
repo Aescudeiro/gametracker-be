@@ -1,5 +1,5 @@
 import { FetchCountriesFromFDAUseCase } from '@/domain/football-devs/application/use-cases/country/fetch-countries-from-fda'
-import { CreateCountryUseCase } from '@/domain/livescore/application/use-cases/auth/create-country'
+import { CreateCountryUseCase } from '@/domain/livescore/application/use-cases/country/create-country'
 import { BadRequestException, Controller, Get, Query } from '@nestjs/common'
 import { z } from 'zod'
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe'

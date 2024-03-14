@@ -1,6 +1,6 @@
-import { InMemoryCountriesRepository } from 'test/repositories/in-memory-countries-repository'
-import { makeCountry } from 'test/factories/make-country'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { makeCountry } from 'test/factories/make-country'
+import { InMemoryCountriesRepository } from 'test/repositories/in-memory-countries-repository'
 import { EditCountryUseCase } from './edit-country'
 
 let inMemoryCountriesRepository: InMemoryCountriesRepository
@@ -17,12 +17,13 @@ describe('Edit country', () => {
 
     await inMemoryCountriesRepository.create(newCountry)
 
-    await sut.execute({
+    const result = await sut.execute({
       countryId: newCountry.id.toString(),
       name: 'Brazil',
       alpha: 'BR',
     })
 
+    expect(result.isRight()).toBeTruthy()
     expect(inMemoryCountriesRepository.items[0]).toMatchObject({
       name: 'Brazil',
       alpha: 'BR',

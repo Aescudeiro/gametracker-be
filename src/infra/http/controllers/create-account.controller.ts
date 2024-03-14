@@ -1,3 +1,6 @@
+import { UserAlreadyExistsError } from '@/domain/livescore/application/use-cases/auth/errors/user-already-exists-error'
+import { RegisterUserUseCase } from '@/domain/livescore/application/use-cases/auth/register-user'
+import { Public } from '@/infra/auth/public'
 import {
   BadRequestException,
   Body,
@@ -8,9 +11,6 @@ import {
 } from '@nestjs/common'
 import { z } from 'zod'
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
-import { Public } from '@/infra/auth/public'
-import { RegisterUserUseCase } from '@/domain/livescore/application/use-cases/country/register-user'
-import { UserAlreadyExistsError } from '@/domain/livescore/application/use-cases/auth/errors/user-already-exists-error'
 
 const createAccountBodySchema = z.object({
   name: z.string(),
