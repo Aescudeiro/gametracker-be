@@ -1,30 +1,30 @@
 import { FDAEntity } from './fda-entity'
 import { FDAUniqueEntityID } from './fda-unique-entity-id'
 
-export interface FDACountryProps {
+export interface FDALeagueProps {
   name?: string
-  alpha: string
+  class_name?: string
   hash_image: string
 }
 
-export class FDACountry extends FDAEntity<FDACountryProps> {
-  static create(props: FDACountryProps, id?: FDAUniqueEntityID) {
-    const country = new FDACountry(
+export class FDALeague extends FDAEntity<FDALeagueProps> {
+  static create(props: FDALeagueProps, id?: FDAUniqueEntityID) {
+    const league = new FDALeague(
       {
         ...props,
       },
       id,
     )
 
-    return country
+    return league
   }
 
   get name() {
     return this.props.name
   }
 
-  get alpha() {
-    return this.props.alpha
+  get class_name() {
+    return this.props.class_name
   }
 
   get hash_image() {
