@@ -1,4 +1,4 @@
-import { EnvService } from '@/infra/env.service'
+import { EnvService } from '@/infra/env/env.service'
 import { HttpModuleOptions, HttpModuleOptionsFactory } from '@nestjs/axios'
 import { Injectable } from '@nestjs/common'
 
